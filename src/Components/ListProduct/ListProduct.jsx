@@ -28,7 +28,7 @@ const ListProduct = () => {
       allproducts.forEach((product) => {
           if (productName === product.name) {
               setCurrentProduct(product);
-              fetch('http://localhost:4000/getordersusingid', {
+              fetch('https://projectbisonbackend.onrender.com/getordersusingid', {
                   method: 'POST',
                   headers: {
                       Accept: 'application/json',
@@ -44,10 +44,6 @@ const ListProduct = () => {
         setDownloadButton(true);
       }
     }
-
-    useEffect(() => {
-      getOrders();
-    }, []);
 
     const downloadExcel = () => {
       const worksheet = XLSX.utils.json_to_sheet(orders.map(order => {
