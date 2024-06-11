@@ -26,9 +26,9 @@ const ListProduct = () => {
     }
 
     const getOrders = async () =>{
+        fetchInfo();
       allproducts.forEach((product) => {
           if (productName === product.name) {
-              setCurrentProduct(product);
               fetch('https://projectbisonbackend.onrender.com/getordersusingid', {
                   method: 'POST',
                   headers: {
@@ -40,10 +40,9 @@ const ListProduct = () => {
           }
       })
       if(!orders){
-          alert("No such product!")
+          alert("No such product!");
       }else{
-          alert("This is working");
-        setDownloadButton(true);
+          setDownloadButton(true);    
       }
     }
 
