@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './ListProduct.css'
 import cross_icon from '../../assets/cross_icon.png'
 import { json } from 'react-router-dom';
+import * as XLSX from 'xlsx';
 
 const ListProduct = () => {
     const [allproducts, setAllProducts] = useState([]);
