@@ -45,6 +45,10 @@ const ListProduct = () => {
       }
     }
 
+    useEffect(() => {
+      getOrders();
+    }, []);
+
     const downloadExcel = () => {
       const worksheet = XLSX.utils.json_to_sheet(orders.map(order => {
           const pairedSizesAndColors = order.product_size.map((size, index) => {
