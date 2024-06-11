@@ -101,10 +101,12 @@ const ListProduct = () => {
   return (
     <div className='list-product'>
       <h1>All Products List</h1>
-      <label>Download orders of any product</label>
-      <input onChange={getProductHandler} placeholder='Enter the product name'/>
-      <button onClick={getOrders}>Get Orders</button>
-      {downloadButton?<button onClick={downloadExcel}>Download as Excel</button>:<></>}
+      <div className="excel">
+        <label>Download orders of any product</label>
+        <input onChange={getProductHandler} placeholder='Enter the product name'/>
+        <button onClick={getOrders}>Get Orders</button>
+        {downloadButton?<button onClick={downloadExcel}>Download as Excel</button>:<></>}
+      </div>
       <div className="listproduct-format-main">
         <p>Products</p>
         <p>Title</p>
