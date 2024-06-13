@@ -7,6 +7,7 @@ const AddProduct = () => {
     const [image_2,setImage_2] = useState(false);
     const [image_3,setImage_3] = useState(false);
     const [image_logo,setImage_logo] = useState(false);
+    const [size_guide,setSize_Guide] = useState(false);
     let descbox = [];
     for(let i = 0; i < 50; i++){
         let text = '';
@@ -36,6 +37,8 @@ const AddProduct = () => {
         rating:0,
         reviewText:descbox,
         no_of_rators:0,
+        size_guide:"",
+        acc_no:"",
     })
 
     const imageLogoHandler = (e)=>{
@@ -48,6 +51,10 @@ const AddProduct = () => {
 
     const image_3_Handler = (e)=>{
         setImage_3(e.target.files[0]);
+    }
+
+    const size_guide_Handler = (e)=>{
+        setSize_Guide(e.target.files[0]);
     }
 
     const imageHandler = (e)=>{
@@ -70,7 +77,8 @@ const AddProduct = () => {
         console.log(productDetails);
         let responceData;
         let responceData_2 ={ success: true, image_url: null };
-        let responceData_3 ={ success: true, image_url: null };;
+        let responceData_3 ={ success: true, image_url: null };
+        let responceData_sizeGuide ={ success: true, image_url: null };
         let responceData_logo;
         let product = productDetails;
 
@@ -117,6 +125,19 @@ const AddProduct = () => {
             }).then((resp) => resp.json()).then((data) =>{responceData_3=data});
         }
 
+        if(size_guide)
+            {
+                let formData_3 = new FormData();
+                formData_3.append('product', size_guide);
+                await fetch('https://projectbisonbackend.onrender.com/upload',{
+                    method:'POST',
+                    headers:{
+                        Accept:'application/json',
+                    },
+                    body:formData_3,
+                }).then((resp) => resp.json()).then((data) =>{responceData_sizeGuide=data});
+            }
+
         await fetch('https://projectbisonbackend.onrender.com/upload',{
             method:'POST',
             headers:{
@@ -138,6 +159,10 @@ const AddProduct = () => {
             product.image_logo = responceData_logo.image_url;
             product.image_2 = responceData_2.image_url;
             product.image_3 = responceData_3.image_url;
+            product.size_guide = responceData_sizeGuide.image_url;
+            if(!product.acc_no){
+                product.acc_no = "Account number not provided";
+            }
             console.log(product);
             await fetch('https://projectbisonbackend.onrender.com/addproduct',{
                 method:'POST',
@@ -172,7 +197,11 @@ const AddProduct = () => {
             <p>Offer Price</p>
             <input value={productDetails.new_price} onChange={changeHandler} type='text' name='new_price' placeholder='Type here'/>
         </div>
-    </div>
+      </div>
+        <div className="addproduct-itemfield">
+            <p>Account Number</p>
+            <input value={productDetails.acc_no} onChange={changeHandler} type='text' name='acc_no' placeholder='Type here'/>
+        </div>
         <div className="addproduct-itemfield">
             <p>Product Category</p>
             <select value={productDetails.category} onChange={changeHandler} name="category" className='add-product-selector'>
@@ -203,6 +232,14 @@ const AddProduct = () => {
                 <img src={image_3?URL.createObjectURL(image_3):upload_area} className='addproduct-thumnail-img' alt="" />
             </label>
             <input onChange={image_3_Handler} type="file" name='image_3' id='file-input_3' hidden/>
+        </div>
+
+        <div className="addproduct-itemfield">
+            <p>Size Guide Upload(not required)</p>
+            <label htmlFor='file-size_guide'>
+                <img src={size_guide?URL.createObjectURL(size_guide):upload_area} className='addproduct-thumnail-img' alt="" />
+            </label>
+            <input onChange={size_guide_Handler} type="file" name='size_guide' id='file-size_guide' hidden/>
         </div>
 
         <div className="addproduct-itemfield">
