@@ -39,6 +39,7 @@ const AddProduct = () => {
         no_of_rators:0,
         size_guide:"",
         acc_no:"",
+        avl_order_types:"both",
     })
 
     const imageLogoHandler = (e)=>{
@@ -208,6 +209,14 @@ const AddProduct = () => {
                 <option value='t-shirts'>T-Shirts</option>
                 <option value='wristbands'>Wristbands</option>
                 <option value='others'>Others</option>
+            </select>
+        </div>
+        <div className="addproduct-itemfield">
+            <p>Available Order Types</p>
+            <select value={productDetails.avl_order_types} onChange={changeHandler} name="avl_order_types" className='add-product-selector'>
+                <option value='both'>Both</option>
+                <option value='pre'>Pre Order</option>
+                <option value='post'>Post Order</option>
             </select>
         </div>
         <div className="addproduct-itemfield">
