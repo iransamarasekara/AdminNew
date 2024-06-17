@@ -55,12 +55,15 @@ const ListProduct = () => {
         const worksheet = XLSX.utils.json_to_sheet(orders.map(order => {
             const pairedSizesAndColors = order.product_size.map((size, index) => {
                 const color = order.product_color[index];
-                return `${size}-${color}`;
-            }).join(", ");
-
+                if (size && color) { // Check if size and color are not null
+                    return `${size}-${color}`;
+                }
+                return ''; // Return an empty string if either size or color is null
+            }).filter(Boolean).join(", "); // Filter out empty strings before joining
+    
             return {
                 ID: order.id,
-                'User ID': order.uder_id,
+                'User ID': order.user_id, // Corrected the typo here
                 'User Name': order.username,
                 'Slip Image': order.slip_image,
                 'Number of purchase products': order.num_purchase_products,
@@ -72,22 +75,10 @@ const ListProduct = () => {
                 'Product name': order.productname,
             };
         }));
-
+    
         const workbook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(workbook, worksheet, "Orders");
         XLSX.writeFile(workbook, "orders.xlsx");
-    };
-
-    const remove_product = async (id) => {
-        await fetch('https://projectbisonbackend.onrender.com/removeproduct', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ id: id })
-        });
-        await fetchInfo();
     };
 
     const addAvl = async (e, id) => {
