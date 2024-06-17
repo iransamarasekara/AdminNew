@@ -63,7 +63,7 @@ const ListProduct = () => {
     
             return {
                 ID: order.id,
-                'User ID': order.user_id, // Corrected the typo here
+                'User ID': order.uder_id, // Corrected the typo here
                 'User Name': order.username,
                 'Slip Image': order.slip_image,
                 'Number of purchase products': order.num_purchase_products,
