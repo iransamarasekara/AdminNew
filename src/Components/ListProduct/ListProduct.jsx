@@ -20,6 +20,18 @@ const ListProduct = () => {
         fetchInfo();
     }, []);
 
+    const remove_product = async (id) => {
+        await fetch('https://projectbisonbackend.onrender.com/removeproduct', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: id })
+        });
+        await fetchInfo();
+    };
+
     const getProductHandler = (e) => {
         setProduct(e.target.value);
     };
