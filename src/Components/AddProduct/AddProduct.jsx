@@ -40,6 +40,8 @@ const AddProduct = () => {
         size_guide:"",
         acc_no:"",
         avl_order_types:"both",
+        acc_name:"Account name not provided",
+        bank:"Bank name not provided",
     })
 
     const imageLogoHandler = (e)=>{
@@ -202,6 +204,14 @@ const AddProduct = () => {
         <div className="addproduct-itemfield">
             <p>Account Number</p>
             <input value={productDetails.acc_no} onChange={changeHandler} type='text' name='acc_no' placeholder='Type here'/>
+        </div>
+        <div className="addproduct-itemfield">
+            <p>Name of Account Holder</p>
+            <input value={productDetails.acc_name} onChange={changeHandler} type='text' name='acc_name' placeholder='Type here'/>
+        </div>
+        <div className="addproduct-itemfield">
+            <p>Bank</p>
+            <input value={productDetails.bank} onChange={changeHandler} type='text' name='bank' placeholder='Type here'/>
         </div>
         <div className="addproduct-itemfield">
             <p>Product Category</p>
