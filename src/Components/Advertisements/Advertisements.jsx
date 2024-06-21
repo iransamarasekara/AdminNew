@@ -62,6 +62,7 @@ const Advertisements = () => {
             <select value={addDetails.ad_category} onChange={changeHandler} name="ad_category" className='add-product-selector'>
                 <option value='t-shirts'>T-Shirts</option>
                 <option value='home'>Home</option>
+                <option value='homeAd'>Home-Ad</option>
                 <option value='wristbands'>Wristbands</option>
                 <option value='others'>Others</option>
             </select>
