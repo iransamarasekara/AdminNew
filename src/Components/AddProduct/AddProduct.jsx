@@ -42,6 +42,11 @@ const AddProduct = () => {
         avl_order_types:"both",
         acc_name:"Account name not provided",
         bank:"Bank name not provided",
+        acc_branch:"Branch name not provided",
+        acc_no2:"",
+        acc_name2:"Account name not provided",
+        bank2:"Bank name not provided",
+        acc_branch2:"Branch name not provided",
     })
 
     const imageLogoHandler = (e)=>{
@@ -213,6 +218,29 @@ const AddProduct = () => {
             <p>Bank</p>
             <input value={productDetails.bank} onChange={changeHandler} type='text' name='bank' placeholder='Type here'/>
         </div>
+        <div className="addproduct-itemfield">
+            <p>Branch</p>
+            <input value={productDetails.acc_branch} onChange={changeHandler} type='text' name='acc_branch' placeholder='Type here'/>
+        </div>
+
+        <div className="addproduct-itemfield">
+            <p>Account Number2</p>
+            <input value={productDetails.acc_no2} onChange={changeHandler} type='text' name='acc_no2' placeholder='Type here'/>
+        </div>
+        <div className="addproduct-itemfield">
+            <p>Name of Account Holder2</p>
+            <input value={productDetails.acc_name2} onChange={changeHandler} type='text' name='acc_name2' placeholder='Type here'/>
+        </div>
+        <div className="addproduct-itemfield">
+            <p>Bank2</p>
+            <input value={productDetails.bank2} onChange={changeHandler} type='text' name='bank2' placeholder='Type here'/>
+        </div>
+        <div className="addproduct-itemfield">
+            <p>Branch2</p>
+            <input value={productDetails.acc_branch2} onChange={changeHandler} type='text' name='acc_branch2' placeholder='Type here'/>
+        </div>
+
+
         <div className="addproduct-itemfield">
             <p>Product Category</p>
             <select value={productDetails.category} onChange={changeHandler} name="category" className='add-product-selector'>
