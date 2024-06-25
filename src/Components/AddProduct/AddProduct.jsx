@@ -40,13 +40,13 @@ const AddProduct = () => {
         size_guide:"",
         acc_no:"",
         avl_order_types:"both",
-        acc_name:"Account name not provided",
-        bank:"Bank name not provided",
-        acc_branch:"Branch name not provided",
+        acc_name:"",
+        bank:"",
+        acc_branch:"",
         acc_no2:"",
-        acc_name2:"Account name not provided",
-        bank2:"Bank name not provided",
-        acc_branch2:"Branch name not provided",
+        acc_name2:"",
+        bank2:"",
+        acc_branch2:"",
     })
 
     const imageLogoHandler = (e)=>{
