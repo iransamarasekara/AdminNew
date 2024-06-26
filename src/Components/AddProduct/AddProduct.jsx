@@ -87,7 +87,7 @@ const AddProduct = () => {
         let responceData_2 ={ success: true, image_url: null };
         let responceData_3 ={ success: true, image_url: null };
         let responceData_sizeGuide ={ success: true, image_url: null };
-        let responceData_logo;
+        let responceData_logo ={ success: true, image_url: null };
         let product = productDetails;
 
         let formData = new FormData();
@@ -96,8 +96,7 @@ const AddProduct = () => {
         
         
 
-        let formData2 = new FormData();
-        formData2.append('product', image_logo);
+        
         
 
         await fetch('https://projectbisonbackend.onrender.com/upload',{
@@ -146,14 +145,18 @@ const AddProduct = () => {
                 }).then((resp) => resp.json()).then((data) =>{responceData_sizeGuide=data});
             }
 
-        await fetch('https://projectbisonbackend.onrender.com/upload',{
-            method:'POST',
-            headers:{
-                Accept:'application/json',
-            },
-            body:formData2,
-        }).then((resp) => resp.json()).then((data) =>{responceData_logo=data});
-
+        if(image_logo)
+            {
+                let formData2 = new FormData();
+                formData2.append('product', image_logo);
+                await fetch('https://projectbisonbackend.onrender.com/upload',{
+                    method:'POST',
+                    headers:{
+                        Accept:'application/json',
+                    },
+                    body:formData2,
+                }).then((resp) => resp.json()).then((data) =>{responceData_logo=data});
+            }   
         // if(!responceData_2.success){
         //     responceData_2.image_url = null;
         // }
@@ -290,7 +293,7 @@ const AddProduct = () => {
         </div>
 
         <div className="addproduct-itemfield">
-            <p>Event Logo Upload</p>
+            <p>Event Logo Upload(not required)</p>
             <label htmlFor='file-input1'>
                 <img src={image_logo?URL.createObjectURL(image_logo):upload_area} className='addproduct-thumnail-img' alt="" />
             </label>
