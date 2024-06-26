@@ -77,6 +77,7 @@ const ListProduct = () => {
                 ID: order.id,
                 'User ID': order.uder_id, // Corrected the typo here
                 'User Name': order.username,
+                'Index': order.index,
                 'Slip Image': order.slip_image,
                 'Number of purchase products': order.num_purchase_products,
                 'Ordered sizes and colors': pairedSizesAndColors,
