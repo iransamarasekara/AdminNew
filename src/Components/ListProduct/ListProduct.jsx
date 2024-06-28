@@ -75,7 +75,7 @@ const ListProduct = () => {
     
             return {
                 ID: order.id,
-                'User ID': order.uder_id, // Corrected the typo here
+                'Email': order.uder_id,
                 'User Name': order.username,
                 'Index': order.index,
                 'Slip Image': order.slip_image,
@@ -86,6 +86,9 @@ const ListProduct = () => {
                 'Order type': order.order_type,
                 'Total payment': order.total,
                 'Product name': order.productname,
+                'Batch': order.batch,
+                'Faculty': order.faculty,
+                'Department': order.department,
             };
         }));
     
