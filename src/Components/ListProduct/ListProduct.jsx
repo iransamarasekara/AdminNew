@@ -89,6 +89,10 @@ const ListProduct = () => {
                 'Batch': order.batch,
                 'Faculty': order.faculty,
                 'Department': order.department,
+                'Pickup_method' : order.uni_pickup,
+                'Pre order method' : order.pre_order_method,
+                'address' : order.address,
+
             };
         }));
     

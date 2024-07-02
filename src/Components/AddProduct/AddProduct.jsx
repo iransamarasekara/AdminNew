@@ -8,6 +8,7 @@ const AddProduct = () => {
     const [image_3,setImage_3] = useState(false);
     const [image_logo,setImage_logo] = useState(false);
     const [size_guide,setSize_Guide] = useState(false);
+    const [frimi,setFrimi] = useState(false);
     let descbox = [];
     for(let i = 0; i < 50; i++){
         let text = '';
@@ -47,6 +48,10 @@ const AddProduct = () => {
         acc_name2:"",
         bank2:"",
         acc_branch2:"",
+        avl_frimi:false,
+        frimi_link:"",
+        avl_home_delivery:false,
+        frimi_discount:0,
     })
 
     const imageLogoHandler = (e)=>{
@@ -80,6 +85,19 @@ const AddProduct = () => {
     const changeHandler = (e) => {
         setProductDetails({...productDetails,[e.target.name]:e.target.value})
     }
+
+    const changeFrimiHandler = (event) => {
+        const { name, value } = event.target;
+        const isTrueSet = value === 'true';
+        setProductDetails({...productDetails,[name]:isTrueSet});
+        setFrimi(isTrueSet);
+    };
+
+    const changeHomeDeliveryHandler = (event) => {
+        const { name, value } = event.target;
+        const isTrueSet = value === 'true';
+        setProductDetails({...productDetails,[name]:isTrueSet});
+    };
 
     const Add_Product = async () => {
         console.log(productDetails);
@@ -260,6 +278,32 @@ const AddProduct = () => {
                 <option value='post'>Post Order</option>
             </select>
         </div>
+        <div className="addproduct-itemfield">
+            <p>Available Home Delivery</p>
+            <select value={String(productDetails.avl_home_delivery)} onChange={changeHomeDeliveryHandler} name="avl_home_delivery" className='add-product-selector'>
+                <option value='true'>available</option>
+                <option value='false'>unavailable</option>
+            </select>
+        </div>
+        <div className="addproduct-itemfield">
+            <p>Available Frimi</p>
+            <select value={String(productDetails.avl_frimi)} onChange={changeFrimiHandler} name="avl_frimi" className='add-product-selector'>
+                <option value='true'>available</option>
+                <option value='false'>unavailable</option>
+            </select>
+        </div>
+        {frimi && 
+        <>
+        <div className="addproduct-itemfield">
+            <p>Frimi Link</p>
+            <input value={productDetails.frimi_link} onChange={changeHandler} type='text' name='frimi_link' placeholder='Type here'/>
+        </div>
+        <div className="addproduct-itemfield">
+            <p>Frimi Discount</p>
+            <input value={productDetails.frimi_discount} onChange={changeHandler} type='text' name='frimi_discount' placeholder='Type here'/>
+        </div>
+        </>
+        }
         <div className="addproduct-itemfield">
             <p>Image Upload</p>
             <label htmlFor='file-input'>
