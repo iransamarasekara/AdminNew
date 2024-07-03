@@ -26,6 +26,12 @@ const Sidebar = () => {
             <p>Adverticements</p>
         </div>
       </Link>
+      <Link to={'/fund'} style={{textDecoration:"none"}}>
+        <div className="sidebar-item">
+            <img src={advertisement_icon} alt=''/>
+            <p>Fund Raisings</p>
+        </div>
+      </Link>
     </div>
   )
 }
